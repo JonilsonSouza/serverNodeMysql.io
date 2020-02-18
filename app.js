@@ -1,0 +1,11 @@
+const express = require('express');
+
+const app = express();
+
+const index = require('./index');
+
+const bodyParser = require('body-parser');
+
+app.use('/',index);
+
+module.exports = app;
