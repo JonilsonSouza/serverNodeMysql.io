@@ -1,5 +1,5 @@
 'use strict'
-const app = require('./app.js');
+const app = require('../app');
 const debug = require('debug')('nodestr:server');
 const http = require('http');
 

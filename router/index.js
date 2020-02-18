@@ -6,7 +6,7 @@ const router = express.Router();
 
 const app = express();
 
-const conexao= require('./conexao');
+const conexao= require('../connection/conexao');
 
 module.exports = router;
 app.use('/', router);
