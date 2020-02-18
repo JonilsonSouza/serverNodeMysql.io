@@ -1,21 +1,37 @@
 'use strict'
 
-const debug = require('debug')('nodestr:server');
-const http = require('http');
-const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
+const server = require('./server.js');
+const express = require('express');
 
 const router = express.Router();
-const app = express();
 
-const port = 9000;
-app.set('port', port);
 
-const server = http.createServer(app);
+router.get('/users',(req,res,rows)=>{
+	execSqlQuery("SELECT * FROM usuarios",res);
+});
 
-module.exports = router;
-app.use('/', router);
 
-server.listen(port);
-console.log('Api rodando na porta  ' + port);
+
+
+
+function execSqlQuery(sqlInsert, res) {
+      const connection = mysql.createConnection({
+        host: "localhost",
+        port: "3306",
+        user: "root",
+        password: "root",
+        database: "banconodejs"
+    });
+    connection.query(sqlInsert, function (error, results, fields) {
+        if (error)
+            console.log('executou!');
+
+        else
+            res.json(results);
+        connection.end();
+        console.log('executou!');
+    });
+}
+
